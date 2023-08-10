@@ -4,7 +4,7 @@
 
 ## Welcome! 👋
 
-This repository contains the Mentor Frontend challenge of the application to calculate the age.
+This repository contains the Frontend Mentor challenge of the application to calculate the age.
 
 It is being built on React + Vite + TypeScript
 
