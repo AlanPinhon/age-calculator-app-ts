@@ -22,7 +22,7 @@ export const FormCalculator = () => {
         currentDate.getMonth(),
         0
       );
-      days += lastMonth.getDate(); // Ajustamos los días negativos
+      days += lastMonth.getDate();
       months--;
     }
 
