@@ -1,31 +1,26 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 
 type inputProps = {
-  forName: string
-  placeholderInput:string
+  inputId: string;
+  placeholderText:string;
+  setInputValue: (value:string) => void;
 }
 
-export const FormInput = ({forName, placeholderInput}:inputProps) => {
+export const FormInput = ({inputId, placeholderText, setInputValue}:inputProps) => {
 
-  const [inputValue, setInputValue] = useState('');
-
-  const handleInputValue = (e:ChangeEvent<HTMLInputElement>) => {
-
-    if(e.target.value === '') console.log('This field is required');
-
-    setInputValue((e.target.value))
-    
+  const handleInputValue = ({target}:ChangeEvent<HTMLInputElement>) => {    
+    const newValue = target.value;
+    setInputValue(newValue);
   }
 
   return (
     <>
-      <label htmlFor={forName}>{forName}</label>
+      <label htmlFor={inputId}>{inputId}</label>
       <input
         type="text"
-        id={forName}
-        value={inputValue}
+        id={inputId}
         onChange={handleInputValue}
-        placeholder={placeholderInput}
+        placeholder={placeholderText}
       />
     </>
   )
