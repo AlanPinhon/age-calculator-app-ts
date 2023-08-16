@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FormInput } from "./FormInput";
+import { calculateAge } from "../helpers/calculateAge";
 
 
 export const FormCalculator = () => {
@@ -8,38 +9,17 @@ export const FormCalculator = () => {
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
 
-  const calculateAge = () => {
-    const birthDate = new Date(Number(year), Number(month) - 1, Number(day));
-    const currentDate = new Date();
-
-    let years = currentDate.getFullYear() - birthDate.getFullYear();
-    let months = currentDate.getMonth() - birthDate.getMonth();
-    let days = currentDate.getDate() - birthDate.getDate();
-
-    if (days < 0) {
-      const lastMonth = new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth(),
-        0
-      );
-      days += lastMonth.getDate();
-      months--;
-    }
-
-    if (months < 0) {
-      years--;
-      months += 12;
-    }
-
-    console.log(`${years} años, ${months} meses y ${days} días`);
-  };
+  const handleCalculateAge = () => {
+    calculateAge(day,month,year);
+  }
+  
 
   return (
     <>
       <FormInput setInputValue={setDay} placeholderText="DD" inputId="Day"/>
       <FormInput setInputValue={setMonth} placeholderText="MM" inputId="Month"/>
       <FormInput setInputValue={setYear} placeholderText="YYYY" inputId="Year"/>
-      <button onClick={calculateAge}>
+      <button onClick={handleCalculateAge}>
         <img className="arrow-btn" src="../src/assets/images/icon-arrow.svg" alt="icon-arrow"/>
       </button>
     </>
