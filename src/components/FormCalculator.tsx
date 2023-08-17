@@ -1,47 +1,40 @@
 import { useState } from "react";
 import { FormInput } from "./FormInput";
-
+import { calculateAge } from "../helpers/calculateAge";
+import { TDate } from "../types/TDate";
 
 export const FormCalculator = () => {
+  
+  const [date, setDate] = useState<TDate | null>(null);
+  
+  const handleCalculateAge = () => {
+    calculateAge(date!);
+  };
 
-  const [day, setDay] = useState('');
-  const [month, setMonth] = useState('');
-  const [year, setYear] = useState('');
-
-  const calculateAge = () => {
-    const birthDate = new Date(Number(year), Number(month) - 1, Number(day));
-    const currentDate = new Date();
-
-    let years = currentDate.getFullYear() - birthDate.getFullYear();
-    let months = currentDate.getMonth() - birthDate.getMonth();
-    let days = currentDate.getDate() - birthDate.getDate();
-
-    if (days < 0) {
-      const lastMonth = new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth(),
-        0
-      );
-      days += lastMonth.getDate();
-      months--;
-    }
-
-    if (months < 0) {
-      years--;
-      months += 12;
-    }
-
-    console.log(`${years} años, ${months} meses y ${days} días`);
+  const handleDateValue = (property: keyof TDate, value:string) => {
+    setDate( oldDate => ({ ...oldDate, [property]: value } as TDate) ) 
   };
 
   return (
     <>
-      <FormInput setInputValue={setDay} placeholderText="DD" inputId="Day"/>
-      <FormInput setInputValue={setMonth} placeholderText="MM" inputId="Month"/>
-      <FormInput setInputValue={setYear} placeholderText="YYYY" inputId="Year"/>
-      <button onClick={calculateAge}>
+      <FormInput
+        placeholderText="DD"
+        inputId="Day"
+        setInputValue={ value => handleDateValue("day", value) }
+      />
+      <FormInput
+        placeholderText="MM"
+        inputId="Month"
+        setInputValue={ value => handleDateValue("month", value) }
+      />
+      <FormInput
+        placeholderText="YYYY"
+        inputId="Year"
+        setInputValue={ value => handleDateValue("year", value) }
+      />
+      <button onClick={handleCalculateAge}>
         <img className="arrow-btn" src="../src/assets/images/icon-arrow.svg" alt="icon-arrow"/>
       </button>
     </>
   )
-}
+};
