@@ -1,4 +1,6 @@
-export const calculateAge = (day:string, month:string, year:string) => {
+import { TDate } from "../types/TDate";
+
+export const calculateAge = ({day, month, year}:TDate) => {
   const birthDate = new Date(Number(year), Number(month) - 1, Number(day));
   const currentDate = new Date();
 
@@ -21,7 +23,7 @@ export const calculateAge = (day:string, month:string, year:string) => {
     months += 12;
   }
 
-  return {
+  return{
     days,
     months,
     years
