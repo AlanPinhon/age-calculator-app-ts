@@ -19,17 +19,17 @@ export const FormCalculator = () => {
     <>
       <FormInput
         placeholderText="DD"
-        inputId="Day"
+        labelId="Day"
         setInputValue={ value => handleDateValue("day", value) }
       />
       <FormInput
         placeholderText="MM"
-        inputId="Month"
+        labelId="Month"
         setInputValue={ value => handleDateValue("month", value) }
       />
       <FormInput
         placeholderText="YYYY"
-        inputId="Year"
+        labelId="Year"
         setInputValue={ value => handleDateValue("year", value) }
       />
       <button onClick={handleCalculateAge}>
