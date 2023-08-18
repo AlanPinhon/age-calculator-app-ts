@@ -4,9 +4,10 @@ type inputProps = {
   labelId: string;
   placeholderText:string;
   setInputValue: (value:string) => void;
+  error:boolean
 }
 
-export const FormInput = ({labelId, placeholderText, setInputValue}:inputProps) => {
+export const FormInput = ({labelId, placeholderText, setInputValue, error}:inputProps) => {
 
   const handleInputValue = ({target}:ChangeEvent<HTMLInputElement>) => {
     const newValue = target.value;
@@ -22,6 +23,7 @@ export const FormInput = ({labelId, placeholderText, setInputValue}:inputProps) 
         onChange={handleInputValue}
         placeholder={placeholderText}
       />
+      {error && <p className="msg-error">Must be a valid {labelId.toLowerCase()}</p>}
     </>
   )
 };
