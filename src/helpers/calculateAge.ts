@@ -23,9 +23,5 @@ export const calculateAge = ({day, month, year}:TDate) => {
     months += 12;
   }
 
-  return{
-    days,
-    months,
-    years
-  }
+  return console.log(`${years} años, ${months} meses y ${days} días`);
 };
