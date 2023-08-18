@@ -6,8 +6,7 @@ import { TDate } from "../types/TDate";
 export const FormCalculator = () => {
   
   const [date, setDate] = useState<TDate | null>(null);
-  const [isValid, setIsValid] = useState(true);
-  const [errors, setErrors] = useState({day:false, month:false, year:false})
+  const [errors, setErrors] = useState({day:'', month:'', year:''})
   
   const handleCalculateAge = () => {  
     calculateAge(date!);
@@ -15,17 +14,21 @@ export const FormCalculator = () => {
 
   const handleDateValue = (property: keyof TDate, value:string) => {
 
-    let regexValidator:RegExp;
-
-    if(property === 'day') regexValidator = /^(0?[1-9]|[12][0-9]|3[01])$/; // Matches numbers 01-31, leading 0 is optional
-    if(property === 'month') regexValidator = /^(0?[1-9]|1[0-2])$/; // Matches numbers 01-12, leading 0 is optional
-    if(property === 'year') regexValidator = /^\d{1,4}$/; // Matches 1 to 4 digits for year
-
-    const isFieldValid = regexValidator!.test(value);
-
-    setIsValid(isValid && isFieldValid);
-    
-    setErrors( prevError => ( {...prevError, [property]: !isFieldValid} ) );
+    if(property === 'day') {
+      // Matches numbers 01-31, leading 0 is optional
+      const isValidDay = /^(0?[1-9]|[12][0-9]|3[01])$/.test(value);
+      setErrors( prevError => ( {...prevError, day: !isValidDay ? 'Must be a valid day' : ''} ) );
+    } 
+    if(property === 'month') {
+      // Matches numbers 01-12, leading 0 is optional
+      const isValidMonth = /^(0?[1-9]|1[0-2])$/.test(value);
+      setErrors( prevError => ( {...prevError, month: !isValidMonth ? 'Must be a valid month' : ''} ) );
+    } 
+    if(property === 'year') {
+      // Matches 1 to 4 digits for year
+      const isValidYear = /^\d{1,4}$/.test(value);
+      setErrors( prevError => ( {...prevError, year: !isValidYear ? 'Must be a valid year' : ''} ) );
+    } 
 
     setDate( oldDate => ( { ...oldDate, [property]: value } as TDate) ); 
   };

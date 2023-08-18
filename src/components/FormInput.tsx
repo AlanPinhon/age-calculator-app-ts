@@ -4,7 +4,7 @@ type inputProps = {
   labelId: string;
   placeholderText:string;
   setInputValue: (value:string) => void;
-  error:boolean
+  error:string
 }
 
 export const FormInput = ({labelId, placeholderText, setInputValue, error}:inputProps) => {
@@ -23,7 +23,7 @@ export const FormInput = ({labelId, placeholderText, setInputValue, error}:input
         onChange={handleInputValue}
         placeholder={placeholderText}
       />
-      {error && <p className="msg-error">Must be a valid {labelId.toLowerCase()}</p>}
+      {error && <p className="msg-error">{error}</p>}
     </>
   )
 };
