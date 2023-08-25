@@ -8,45 +8,41 @@ export const FormCalculator = () => {
   const [date, setDate] = useState<TDate>({ day: '', month: '', year: ''});
   const [errors, setErrors] = useState({day:'', month:'', year:''});
 
-  const handleDateValue = (property: keyof TDate, value:string) => {
-
-    const validateDate = (dateValue:string, regEx:RegExp, msgError:string) => {
-      const isValidDate = regEx.test(dateValue);
-      
-      if(dateValue === '') {
-        setErrors( prevError => ( {...prevError, [property]: 'This field is required'} ) );
-        return false;
-      }
-      if(!isValidDate) {
-        setErrors( prevError => ( {...prevError, [property]: msgError} ) );
-        return false;
-      }
-      setErrors( prevError => ( {...prevError, [property]: ''} ) );
-      return true;
-    }
-
-    if(property === 'day') validateDate(value, /^(0?[1-9]|[12][0-9]|3[01])$/, 'Must be a valid day'); // RegEx matches numbers 01-31, leading 0 is optional
-
-    if(property === 'month') validateDate(value, /^(0?[1-9]|1[0-2])$/, 'Must be a valid month'); // RegEx matches numbers 01-12, leading 0 is optional
-       
-    if(property === 'year') validateDate(value, /^\d{1,4}$/, 'Must be a valid year'); //RegEx matches 1 to 4 digits for year
-
+  const handleDateValue = (property: keyof TDate, value:string) => {   
     setDate( oldDate => ( { ...oldDate, [property]: value } as TDate) );
   };
 
-  const handleCalculateAge = () => {     
-    const futureDateErrors = validateFutureDate(date.day, date.month, date.year);
+  const validateDate = (dateValue:string, regEx:RegExp, msgError:string, property:string) => {
+    const isValidDate = regEx.test(dateValue);
+    
+    if(dateValue === '') {
+      setErrors( prevError => ( {...prevError, [property]: 'This field is required'} ) );
+    }else if(!isValidDate) {
+      setErrors( prevError => ( {...prevError, [property]: msgError} ) );
+    } else setErrors( prevError => ( {...prevError, [property]: ''} ) );
 
-    if(futureDateErrors){
-      return setErrors({
-        day: futureDateErrors,
-        month:futureDateErrors,
-        year: futureDateErrors
-      })
+    return isValidDate;
+  }
+
+  const handleCalculateAge = () => {
+    const dayIsValid = validateDate(date.day, /^(0?[1-9]|[12][0-9]|3[01])$/, 'Must be a valid day','day'); // RegEx matches numbers 01-31, leading 0 is optional
+    const monthIsValid = validateDate(date.month, /^(0?[1-9]|1[0-2])$/, 'Must be a valid month','month'); // RegEx matches numbers 01-12, leading 0 is optional
+    const yearIsValid = validateDate(date.year, /^\d{4}$/, 'Must be a valid year','year'); //RegEx matches only 4 digits for year
+
+    if(dayIsValid && monthIsValid && yearIsValid){
+      const futureDateErrors = validateFutureDate(date.day, date.month, date.year);
+
+      if(futureDateErrors){
+        return setErrors({
+          day: futureDateErrors,
+          month:futureDateErrors,
+          year: futureDateErrors
+        })
+      }
+
+      calculateAge(date!);
+      setErrors({day:'', month:'', year:''});
     }
-
-    calculateAge(date!);
-    setErrors({day:'', month:'', year:''});
   }
 
   return (
