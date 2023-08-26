@@ -3,10 +3,15 @@ import { FormInput } from "./FormInput";
 import { calculateAge, validateFutureDate } from "../helpers/index";
 import { TDate } from "../types/TDate";
 
-export const FormCalculator = () => {
+type formProps = {
+  setAgeResults: (results:{ years: number; months: number; days: number }) => void;
+}
+
+export const FormCalculator = ({setAgeResults}:formProps) => {
   
   const [date, setDate] = useState<TDate>({ day: '', month: '', year: ''});
   const [errors, setErrors] = useState({day:'', month:'', year:''});
+
 
   const handleDateValue = (property: keyof TDate, value:string) => {   
     setDate( oldDate => ( { ...oldDate, [property]: value } as TDate) );
@@ -40,7 +45,8 @@ export const FormCalculator = () => {
         })
       }
 
-      calculateAge(date!);
+      const results = calculateAge(date!);
+      setAgeResults(results);
       setErrors({day:'', month:'', year:''});
     }
   }
