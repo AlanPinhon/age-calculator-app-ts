@@ -1,6 +1,9 @@
 import { TDate } from "../types/TDate";
 
 export const calculateAge = ({day, month, year}:TDate) => {
+
+  // Calculate the difference in age from the current date
+
   const birthDate = new Date(Number(year), Number(month) - 1, Number(day));
   const currentDate = new Date();
 
@@ -23,7 +26,7 @@ export const calculateAge = ({day, month, year}:TDate) => {
     months += 12;
   }
 
-  return{
+  return {
     days,
     months,
     years
