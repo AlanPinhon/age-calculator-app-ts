@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Tests on <FormInput /> > should to be match to the snapshot 1`] = `
+<div>
+  <label
+    for="Day"
+  >
+    Day
+  </label>
+  <input
+    id="Day"
+    placeholder="DD"
+    type="text"
+  />
+  <p
+    class="msg-error"
+  >
+    Must be a valid day
+  </p>
+</div>
+`;
