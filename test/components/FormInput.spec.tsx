@@ -39,8 +39,6 @@ describe('Tests on <FormInput />', () => {
     const inputElement = screen.getByPlaceholderText(placeholderTxt) as HTMLInputElement;
     fireEvent.change(inputElement,{target: {value: '22'}});
     expect(inputElement.value).toBe('22');
-
-    screen.debug();
   });
   
 });
