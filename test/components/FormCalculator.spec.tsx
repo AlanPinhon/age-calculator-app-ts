@@ -93,7 +93,7 @@ describe('Tests on <FormCalculator />', () => {
 
   });
   
-  test('should call the function ', () => {
+  test('should call the function setAgeResults', () => {
     render(<FormCalculator setAgeResults={setAgeResultsMock}/>)
 
     const dayInput = screen.getByPlaceholderText('DD') as HTMLInputElement;
@@ -106,7 +106,6 @@ describe('Tests on <FormCalculator />', () => {
     fireEvent.change(yearInput,{target: {value: '1992'}});
     fireEvent.click(btnCalculate);
     
-    screen.debug();
     expect(setAgeResultsMock).toHaveBeenCalledTimes(1);
 
   });
