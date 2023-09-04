@@ -89,8 +89,25 @@ describe('Tests on <FormCalculator />', () => {
     fireEvent.change(yearInput,{target: {value: '2000'}});
     fireEvent.click(btnCalculate);
     
-    screen.debug();
     expect(screen.getAllByText('Must be a valid date')).toBeTruthy();
+
+  });
+  
+  test('should call the function ', () => {
+    render(<FormCalculator setAgeResults={setAgeResultsMock}/>)
+
+    const dayInput = screen.getByPlaceholderText('DD') as HTMLInputElement;
+    const monthInput = screen.getByPlaceholderText('MM') as HTMLInputElement;
+    const yearInput = screen.getByPlaceholderText('YYYY') as HTMLInputElement;
+    const btnCalculate = screen.getByRole('button');
+
+    fireEvent.change(dayInput,{target: {value: '22'}});
+    fireEvent.change(monthInput,{target: {value: '5'}});
+    fireEvent.change(yearInput,{target: {value: '1992'}});
+    fireEvent.click(btnCalculate);
+    
+    screen.debug();
+    expect(setAgeResultsMock).toHaveBeenCalledTimes(1);
 
   });
 
