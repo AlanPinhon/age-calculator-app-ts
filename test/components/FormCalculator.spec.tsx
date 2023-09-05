@@ -2,13 +2,13 @@ import React from 'react';
 import { render, screen,fireEvent } from '@testing-library/react';
 import { vi } from 'vitest';
 import { FormCalculator } from '../../src/components/FormCalculator';
+import { calculateAge } from '../../src/helpers';
+
 
 describe('Tests on <FormCalculator />', () => {
- 
- 
-  const setAgeResultsMock = vi.fn();
 
   test('should render initial inputs', () => {
+    const setAgeResultsMock = vi.fn();
     render(<FormCalculator setAgeResults={setAgeResultsMock}/>)
 
     const dayInput = screen.getByPlaceholderText('DD') as HTMLInputElement;
@@ -21,11 +21,11 @@ describe('Tests on <FormCalculator />', () => {
 
     expect(dayInput.value).toBe('');
     expect(monthInput.value).toBe('');
-    expect(yearInput.value).toBe('');
-    
+    expect(yearInput.value).toBe(''); 
   });
 
   test('should display an error message if the inputs are empty', () => {
+    const setAgeResultsMock = vi.fn();
     render(<FormCalculator setAgeResults={setAgeResultsMock}/>)
 
     const dayInput = screen.getByPlaceholderText('DD') as HTMLInputElement;
@@ -42,6 +42,7 @@ describe('Tests on <FormCalculator />', () => {
   });
 
   test('should display an error message if the day, month or year value is invalid', () => {
+    const setAgeResultsMock = vi.fn();
     render(<FormCalculator setAgeResults={setAgeResultsMock}/>)
 
     const dayInput = screen.getByPlaceholderText('DD') as HTMLInputElement;
@@ -60,6 +61,7 @@ describe('Tests on <FormCalculator />', () => {
   });
 
   test('should display an error message if the date is in the future', () => {
+    const setAgeResultsMock = vi.fn();
     render(<FormCalculator setAgeResults={setAgeResultsMock}/>)
 
     const dayInput = screen.getByPlaceholderText('DD') as HTMLInputElement;
@@ -73,10 +75,10 @@ describe('Tests on <FormCalculator />', () => {
     fireEvent.click(btnCalculate);
 
     expect(screen.getAllByText('Must be in the past')).toBeTruthy();
-
   });
   
   test('should display an error message if the date is invalid', () => {
+    const setAgeResultsMock = vi.fn();
     render(<FormCalculator setAgeResults={setAgeResultsMock}/>)
 
     const dayInput = screen.getByPlaceholderText('DD') as HTMLInputElement;
@@ -90,10 +92,17 @@ describe('Tests on <FormCalculator />', () => {
     fireEvent.click(btnCalculate);
     
     expect(screen.getAllByText('Must be a valid date')).toBeTruthy();
-
   });
   
-  test('should call the function setAgeResults', () => {
+  test('should call the setAgeResults function with the correct values', () => {
+    const setAgeResultsMock = vi.fn();
+
+    const dateMock = {
+      day: '22',
+      month: '5',
+      year: '1992'
+    }
+
     render(<FormCalculator setAgeResults={setAgeResultsMock}/>)
 
     const dayInput = screen.getByPlaceholderText('DD') as HTMLInputElement;
@@ -101,13 +110,13 @@ describe('Tests on <FormCalculator />', () => {
     const yearInput = screen.getByPlaceholderText('YYYY') as HTMLInputElement;
     const btnCalculate = screen.getByRole('button');
 
-    fireEvent.change(dayInput,{target: {value: '22'}});
-    fireEvent.change(monthInput,{target: {value: '5'}});
-    fireEvent.change(yearInput,{target: {value: '1992'}});
+    fireEvent.change(dayInput,{target: {value: dateMock.day}});
+    fireEvent.change(monthInput,{target: {value: dateMock.month}});
+    fireEvent.change(yearInput,{target: {value: dateMock.year}});
     fireEvent.click(btnCalculate);
     
-    expect(setAgeResultsMock).toHaveBeenCalledTimes(1);
-
+    expect(setAgeResultsMock).toHaveBeenCalledWith(calculateAge(dateMock))
+    expect(setAgeResultsMock).toHaveBeenCalledTimes(1);   
   });
 
 });
