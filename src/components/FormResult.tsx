@@ -10,11 +10,11 @@ export const FormResult = ({ageResults}:resultsProps) => {
 
   return (
     <>
-      <h2>{years ? years : (years === 0 ? '0' : '--')} years
+      <h2>{years ?? '--'} years
       </h2>
-      <h2>{months ? months : (months === 0 ? '0' : '--')} months
+      <h2>{months ?? '--'} months
       </h2>
-      <h2>{days ? days : (days === 0 ? '0' : '--')} days
+      <h2>{days ?? '--'} days
       </h2>
     </>
   )

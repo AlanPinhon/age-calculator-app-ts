@@ -68,8 +68,8 @@ describe('Tests on <FormCalculator />', () => {
     const yearInput = screen.getByPlaceholderText('YYYY') as HTMLInputElement;
     const btnCalculate = screen.getByRole('button');
 
-    fireEvent.change(dayInput,{target: {value: '25'}});
-    fireEvent.change(monthInput,{target: {value: '12'}});
+    fireEvent.change(dayInput,{target: {value: '31'}});
+    fireEvent.change(monthInput,{target: {value: '9'}});
     fireEvent.change(yearInput,{target: {value: '2023'}});
     fireEvent.click(btnCalculate);
 
