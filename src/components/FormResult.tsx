@@ -4,11 +4,18 @@ type resultsProps = {
 
 export const FormResult = ({ageResults}:resultsProps) => {
 
+  const years = ageResults?.years;
+  const months = ageResults?.months;
+  const days = ageResults?.days;
+
   return (
     <>
-      <h2>{ageResults?.years ? ageResults.years : '--'} years</h2>
-      <h2>{ageResults?.months ? ageResults.months : '--'} months</h2>
-      <h2>{ageResults?.days ? ageResults.days : '--'} days</h2>
+      <h2>{years ?? '--'} years
+      </h2>
+      <h2>{months ?? '--'} months
+      </h2>
+      <h2>{days ?? '--'} days
+      </h2>
     </>
   )
 }
