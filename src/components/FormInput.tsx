@@ -16,14 +16,17 @@ export const FormInput = ({labelId, placeholderText, setInputValue, error}:input
 
   return (
     <>
-      <label htmlFor={labelId}>{labelId}</label>
-      <input
-        type="text"
-        id={labelId}
-        onChange={handleInputValue}
-        placeholder={placeholderText}
-      />
-      {error && <p className="msg-error">{error}</p>}
+      <section className="container-input">
+        <label htmlFor={labelId}>{labelId}</label>
+        <input
+          className={error && "input-error"}
+          type="text"
+          id={labelId}
+          onChange={handleInputValue}
+          placeholder={placeholderText}
+        />
+        {error && <p className="msg-error">{error}</p>}
+      </section>
     </>
   )
 };

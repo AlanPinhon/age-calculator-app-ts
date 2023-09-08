@@ -8,8 +8,10 @@ export const AgeCalculatorApp = () => {
   
   return (
     <>
-      <FormCalculator setAgeResults={setAgeResults}/>
-      <FormResult ageResults={ageResults}/>
+      <section className="container-app">
+        <FormCalculator setAgeResults={setAgeResults}/>
+        <FormResult ageResults={ageResults}/>
+      </section>
     </>
   )
 }

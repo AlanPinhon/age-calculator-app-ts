@@ -53,28 +53,30 @@ export const FormCalculator = ({setAgeResults}:formProps) => {
 
   return (
     <>
-      <FormInput
-        placeholderText="DD"
-        labelId="Day"
-        setInputValue={ value => handleDateValue("day", value) }
-        error={errors.day}
-      />
-      <FormInput
-        placeholderText="MM"
-        labelId="Month"
-        setInputValue={ value => handleDateValue("month", value) }
-        error={errors.month}
-      />
-      <FormInput
-        placeholderText="YYYY"
-        labelId="Year"
-        setInputValue={ value => handleDateValue("year", value) }
-        error={errors.year}
-      />
-
-      <button onClick={handleCalculateAge}>
-        <img className="arrow-btn" src="../src/assets/images/icon-arrow.svg" alt="icon-arrow"/>
-      </button>
+      <section className="container-form">
+        <FormInput
+          placeholderText="DD"
+          labelId="Day"
+          setInputValue={ value => handleDateValue("day", value) }
+          error={errors.day}
+        />
+        <FormInput
+          placeholderText="MM"
+          labelId="Month"
+          setInputValue={ value => handleDateValue("month", value) }
+          error={errors.month}
+        />
+        <FormInput
+          placeholderText="YYYY"
+          labelId="Year"
+          setInputValue={ value => handleDateValue("year", value) }
+          error={errors.year}
+        />
+  
+        <button onClick={handleCalculateAge}>
+          <img className="arrow-btn" src="../src/assets/images/icon-arrow.svg" alt="icon-arrow"/>
+        </button>
+      </section>
     </>
   )
 };

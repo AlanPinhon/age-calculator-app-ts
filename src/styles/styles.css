@@ -1,3 +1,96 @@
+:root{
+  --white: #fff;
+  --off-white:  rgb(240, 240, 240);
+  --light-grey: rgb(219, 219, 219);
+  --smokey-grey: rgb(113, 111, 111);
+  --off-black: rgb(20, 20, 20);
+  --purple: rgb(133, 77, 255);
+  --light-red: rgb(255, 87, 87);
+  --font-size-inputs: 32px;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body{
+  background-color: var(--off-white);
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.container-app{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--white);
+  width: 50.7rem;
+  height: 40.75rem;
+  border-radius: 1.5rem;
+  border-bottom-right-radius: 12rem;
+}
+
+.container-form,
+.container-result{
+  width: 86%;
+}
+
+.container-form{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 35%;
+  border: 1px solid red;
+}
+
+.container-result{
+  height: 65%;
+  border: 1px solid green;
+}
+
+.container-input{
+  display: flex;
+  flex-direction: column;
+  width: 22%;
+  height: 50%;
+  margin-right: 2rem;
+
+  & label{
+    font-weight: 700;
+    letter-spacing: .25rem;
+    text-transform: uppercase;
+    font-size: .8rem;
+    color: var(--smokey-grey);
+    margin-bottom: .5rem;
+  }
+
+  & input{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    border: 1px solid var(--light-grey);
+    border-radius: .5rem;
+    font-size: 1.8rem;
+    line-height: 4rem;
+    height: 4rem;
+    padding-left: 1rem;
+
+    &::placeholder{
+      color: rgb(149, 145, 145);
+    }
+  }
+
+  
+  .input-error{
+    border: 1px solid var(--light-red)
+  }
+}
+
 button{
   display: flex;
   justify-content: center;
@@ -6,19 +99,15 @@ button{
   height: 50px;
   border: none;
   border-radius: 50%;
-  background-color: rgb(133, 77, 255);
+  background-color: var(--purple);
 
   & img.arrow-btn{
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
     padding: .5rem;
   }
 }
 
-.input-error{
-  border: 1px solid rgb(255, 87, 87);
-}
-
 .msg-error{
-  color: rgb(255, 87, 87);
+  color: var(--light-red);
 }
