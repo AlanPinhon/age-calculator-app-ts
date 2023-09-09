@@ -11,9 +11,9 @@ export const FormResult = ({ageResults}:resultsProps) => {
   return (
     <>
       <section className="container-result">
-        <h2>{years ?? '--'} years</h2>
-        <h2>{months ?? '--'} months</h2>
-        <h2>{days ?? '--'} days</h2>
+        <h2 className="date-result"><span className="date-number">{years ?? '--'}</span> years</h2>
+        <h2 className="date-result"><span className="date-number">{months ?? '--'}</span> months</h2>
+        <h2 className="date-result"><span className="date-number">{days ?? '--'}</span> days</h2>
       </section>
     </>
   )

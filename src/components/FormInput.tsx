@@ -17,7 +17,7 @@ export const FormInput = ({labelId, placeholderText, setInputValue, error}:input
   return (
     <>
       <section className="container-input">
-        <label htmlFor={labelId}>{labelId}</label>
+        <label className={error && "label-error"} htmlFor={labelId}>{labelId}</label>
         <input
           className={error && "input-error"}
           type="text"

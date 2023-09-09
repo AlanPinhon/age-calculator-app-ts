@@ -43,15 +43,15 @@ body{
 
 .container-form{
   display: flex;
+  position: relative;
   flex-direction: row;
   align-items: center;
-  height: 35%;
-  border: 1px solid red;
+  height: 30%;
+  border-bottom: 1px solid var(--light-grey);
 }
 
 .container-result{
-  height: 65%;
-  border: 1px solid green;
+  height: 70%;
 }
 
 .container-input{
@@ -79,9 +79,15 @@ body{
     line-height: 4rem;
     height: 4rem;
     padding-left: 1rem;
+    margin-bottom: .5rem;
 
     &::placeholder{
       color: rgb(149, 145, 145);
+    }
+
+    &:focus{
+      outline: none;
+      border-color: var(--purple)
     }
   }
 
@@ -89,25 +95,105 @@ body{
   .input-error{
     border: 1px solid var(--light-red)
   }
+
+  .label-error{
+    color: var(--light-red);
+  }
 }
 
 button{
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 50px;
+  width: 6.25rem;
+  height: 6.25rem;
   border: none;
   border-radius: 50%;
   background-color: var(--purple);
+  position: absolute;
+  bottom: -3rem;
+  right: 0;
+  transition: .1s ease-in-out;
 
   & img.arrow-btn{
-    width: 40px;
-    height: 40px;
+    width: 4rem;
+    height: 4rem;
     padding: .5rem;
+  }
+
+  &:hover{
+    background-color: var(--off-black);
+    cursor: pointer;
   }
 }
 
 .msg-error{
   color: var(--light-red);
+  font-size: .85rem;
+  font-style: italic;
+}
+
+.date-result{
+  font-size: 5.5rem;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.date-number{
+  color: var(--purple);
+}
+
+@media screen and (max-width: 850px){
+  .container-app{
+    width: 20.5rem;
+    height: 30rem;
+    border-radius: 1.5rem;
+    border-bottom-right-radius: 5rem;
+  }
+
+  .container-form,
+  .container-result{
+    width: 85%;
+  }
+
+  .container-form{
+    height: 45%;
+    justify-content: space-between;
+  }
+  
+  .container-result{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 55%;
+  }
+
+  .container-input{
+    width: 30%;
+    margin-right: 0;
+
+    & input{
+      font-size: 1.25rem;
+      padding-left: .85rem;
+      line-height: 3.5rem;
+      height: 3.35rem;
+    }
+  }
+
+  button{
+    width: 3.5rem;
+    height: 3.5rem;
+    bottom: -1.75rem;
+    right: 7rem;
+
+    & img.arrow-btn{
+      width: 2.65rem;
+      height: 2.65rem;
+      padding: .5rem;
+    }
+  }
+
+  .date-result{
+    font-size: 2.85rem;
+  }
 }
