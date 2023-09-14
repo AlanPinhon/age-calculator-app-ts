@@ -1,0 +1,30 @@
+.container-result{
+  width: 86%;
+  height: 70%;
+}
+
+.date-result{
+  font-size: 5.5rem;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.date-number{
+  color: var(--purple);
+}
+
+@media screen and (max-width: 850px){
+  
+  .container-result{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 85%;
+    height: 55%;
+  }
+
+  .date-result{
+    font-size: 2.85rem;
+  }
+  
+}
