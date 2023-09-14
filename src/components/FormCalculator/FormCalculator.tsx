@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { FormInput } from "./FormInput";
-import { calculateAge, validateFutureDate } from "../helpers/index";
-import { TDate } from "../types/TDate";
+import { FormInput } from "../FormInput/FormInput";
+import { calculateAge, validateFutureDate } from "../../helpers/index";
+import { TDate } from "../../types/TDate";
+import '../FormCalculator/FormCalculatorStyles.css';
+
 
 type formProps = {
   setAgeResults: (results:{ years: number; months: number; days: number }) => void;
@@ -52,7 +54,7 @@ export const FormCalculator = ({setAgeResults}:formProps) => {
   }
 
   return (
-    <>
+    <section className="container-form">
       <FormInput
         placeholderText="DD"
         labelId="Day"
@@ -75,6 +77,6 @@ export const FormCalculator = ({setAgeResults}:formProps) => {
       <button onClick={handleCalculateAge}>
         <img className="arrow-btn" src="../src/assets/images/icon-arrow.svg" alt="icon-arrow"/>
       </button>
-    </>
+    </section>
   )
 };
